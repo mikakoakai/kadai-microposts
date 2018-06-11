@@ -13,13 +13,18 @@ class CreateMicropostsTable extends Migration
      */
     public function up()
     {
-        Schema::create('microposts', function (Blueprint $table) {
+        Schema::create('user_follow', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('user_id')->unsigned()->index();
-            $table->string('content');
+            $table->integer('follow_id')->unsigned()->index();
             $table->timestamps();
-            
-            $table->foreign('user_id')->references('id')->on('users');
+
+            // Foreign key setting
+            $table->foreign('user_id')->references('id')->on('microposts')->onDelete('cascade');
+            $table->foreign('follow_id')->references('id')->on('microposts')->onDelete('cascade');
+
+            // Do not allow duplication of combination of user_id and follow_id
+            $table->unique(['user_id', 'follow_id']);
         });
     }
 
@@ -30,6 +35,6 @@ class CreateMicropostsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('microposts');
+        Schema::dropIfExists('user_follow');
     }
 }
