@@ -15,13 +15,17 @@ class Controller extends BaseController
         $count_followings = $user->followings()->count();
         
         $count_followers = $user->followers()->count();
-        $count_favorites = $user->favorites()->count();
+        $count_favorites = $user->favorating()->count();
+        //$count_favorites = 1;
+        //$count_unfavorite= $user->unfavorite()->count();
+       // $count_unfavorite= 1;
 
         return [
             'count_microposts' => $count_microposts,
             'count_followings' => $count_followings,
             'count_followers' => $count_followers,
-            'count_favorites' => $count_favorites
+            'count_favorites' => $count_favorites,
+           
             
         ];
     }

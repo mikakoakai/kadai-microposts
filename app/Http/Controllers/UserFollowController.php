@@ -9,7 +9,7 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 class UserFollowController extends Controller
 {
-    public function store(Request $request, $id)
+    public function store(\Request $request, $id)
     {
         \Auth::user()->follow($id);
         return redirect()->back();

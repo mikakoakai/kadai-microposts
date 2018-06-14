@@ -19,7 +19,12 @@ class UsersController extends Controller
             $data = [
                 'user' => $user,
                 'microposts' => $microposts,
+                'users' => User::paginate(10)
             ];
+    //        $data += $this->counts($user);
+            return view('users.users', $data);
+
+      //      return view('users.show', $data);
         }
         return view('welcome', $data);
     }
@@ -70,18 +75,17 @@ class UsersController extends Controller
     
      public function favorites($id)
     {
-        /*
         $user = User::find($id);
-        $favorites = $user->favorites()->paginate(10);
+        $favorites = $user->favorating()->paginate(10);
 
         $data = [
             'user' => $user,
-            'users' => $favorites,
+            'microposts' => $favorites,
         ];
 
         $data += $this->counts($user);
 
-        return view('users.favorites', $data);*/
+        return view('users.favorites', $data);
     }
 }
 
