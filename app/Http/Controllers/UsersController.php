@@ -22,7 +22,8 @@ class UsersController extends Controller
                 'users' => User::paginate(10)
             ];
     //        $data += $this->counts($user);
-            return view('users.users', $data);
+            //return view('users.users', $data);
+            return view('users.index', $data);
 
       //      return view('users.show', $data);
         }
